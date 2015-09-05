@@ -12,6 +12,10 @@ app.engine('ejs', ejs);
   app.use('/' + route, router);
 });
 
+app.get('*', function(req, res) {
+  res.redirect(301, 'https://github.com/jamesreggio/http-playground');
+});
+
 app.listen(app.get('port'), function() {
   console.log('http-playground is running on port', app.get('port'));
 });

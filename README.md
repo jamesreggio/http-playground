@@ -4,7 +4,7 @@ Simple [`express`](http://expressjs.com)-based HTTP server for testing.
 
 ## Modules
 
-### [Synthetic response generator](/synthetic)
+### [Synthetic response generator](https://http-playground.herokuapp.com/synthetic)
 
 Generates responses with synthetic HTTP statuses. Supports redirects with configurable delays.
 
