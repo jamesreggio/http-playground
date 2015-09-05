@@ -2,11 +2,15 @@
 
 Simple [`express`](http://expressjs.com)-based HTTP server for testing.
 
-*Modules:*
+## Modules
 
-* [Synthetic response generator](/synthetic)
+### [Synthetic response generator](/synthetic)
 
-## How to use
+Generates responses with synthetic HTTP statuses. Supports redirects with configurable delays.
+
+Built to test delegate callbacks for `SFSafariViewController` in iOS 9.
+
+## How to run locally
 
 ```base
 npm install
