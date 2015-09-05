@@ -6,7 +6,8 @@ Simple [`express`](http://expressjs.com)-based HTTP server for testing.
 
 ### [Synthetic response generator](https://http-playground.herokuapp.com/synthetic)
 
-Generates responses with synthetic HTTP statuses. Supports redirects with configurable delays.
+Generates responses with synthetic HTTP statuses. Supports redirects with
+configurable delays.
 
 Built to test delegate callbacks for `SFSafariViewController` in iOS 9.
 

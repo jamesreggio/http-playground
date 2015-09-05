@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "ejs": "~2.3",
-    "ejs-mate": "^2.3.0",
+    "ejs-mate": "~2.3",
     "express": "~4.13"
   }
 }
