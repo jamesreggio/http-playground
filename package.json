@@ -1,0 +1,28 @@
+{
+  "name": "http-playground",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Simple HTTP server for testing",
+  "license": "Unlicense",
+  "author": {
+    "name": "James Reggio",
+    "email": "james.reggio@gmail.com",
+    "url": "http://regg.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesreggio/http-playground.git"
+  },
+  "homepage": "https://github.com/jamesreggio/http-playground",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "0.12"
+  },
+  "dependencies": {
+    "ejs": "~2.3",
+    "ejs-mate": "^2.3.0",
+    "express": "~4.13"
+  }
+}

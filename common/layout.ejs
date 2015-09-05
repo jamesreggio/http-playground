@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="/<%= base %>/">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      /* Structure */
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      section {
+        margin: 1em;
+        padding: 0.5em 1em;
+        border: 1px solid #eee;
+        border-radius: 0.5em;
+      }
+      section > :first-child {
+        margin-top: 0;
+      }
+
+      /* Typography */
+
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 15px;
+        line-height: 1.55;
+        color: #777;
+      }
+
+      p {
+        margin: 1em 0 0;
+      }
+
+      h1, h2 {
+        margin: 1.5em 0 0;
+        font-weight: normal;
+        color: #444;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+      h2 {
+        font-size: 1.25em;
+      }
+
+      hr {
+        margin: 0.5em 0;
+        border: 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      a {
+        color: #3b8bba;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #5babea;
+      }
+    </style>
+  </head>
+  <body>
+    <%- body %>
+  </body>
+</html>
