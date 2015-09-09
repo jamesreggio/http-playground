@@ -6,7 +6,7 @@ app.set('views', __dirname);
 
 // Loading delays
 var SLOW_GIF_DELAY = 5000;
-var SPLIT_DOCUMENT_DELAY = 1000;
+var SPLIT_DOCUMENT_DELAY = 500;
 
 // Categories of HTTP status codes
 var TERMINALS = [200, 204,
