@@ -4,9 +4,6 @@ var app = express();
 app.set('etag', false);
 app.set('views', __dirname);
 
-// Default time to wait before a redirect
-var DEFAULT_WAIT = 5000;
-
 // Categories of HTTP status codes
 var TERMINALS = [200, 204,
                  400, 401, 403, 404,
@@ -37,18 +34,21 @@ app.get('*', function(req, res) {
   var parts = req.path.substr(1).split('/');
   var next = parseInt(parts.shift(), 10);
   var wait = parseInt(req.query.wait, 10);
+  var fn = null;
 
   if (TERMINALS.indexOf(next) !== -1) {
-    render.terminal(res, next);
+    fn = render.terminal.bind(render, res, next);
   } else if (REDIRECTS.indexOf(next) !== -1) {
-    setTimeout(function() {
+    fn = function() {
       var url = [req.baseUrl].concat(parts).join('/');
       url += isNaN(wait) ? '' : ('?wait=' + wait);
       res.redirect(next, url);
-    }, isNaN(wait) ? DEFAULT_WAIT : wait);
+    };
   } else {
-    render.index(res, 400, true);
+    fn = render.index.bind(render, res, 400, true);
   }
+
+  setTimeout(fn, wait || 0);
 });
 
 module.exports = app;

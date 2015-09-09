@@ -1,4 +1,4 @@
-<% layout('../common/layout') -%>
+<% layout('../common/layout') %>
 
 <section>
   <h1>Synthetic response generator</h1>
@@ -8,7 +8,8 @@
   </p>
   <% } %>
   <p>
-    This system will generate responses with synthetic HTTP statuses.
+    This system will generate a response after a specified delay with a
+    synthetic HTTP status.
   </p>
   <p>
     To construct a synthetic response, create a path where each segment is a
@@ -16,17 +17,17 @@
     code is encountered.
   </p>
   <p>
-    Redirects will, by default, have a 5 second delay. To adjust this, pass a
-    <code>wait</code> time, in milliseconds, as a query parameter.
+    To add a delay between responses, pass a <code>wait</code> time, in
+    milliseconds, as a query parameter.
   </p>
   <h2>Examples</h2>
   <p>
     <a href="200">/200</a><br>
     <a href="404">/404</a><br>
-    <a href="500">/500</a><br>
+    <a href="503?wait=2000">/503?wait=2000</a><br>
+    <hr>
     <a href="301/200">/301/200</a><br>
     <a href="301/302/200">/301/302/200</a><br>
-    <a href="301/302/200?wait=0">/301/302/200?wait=0</a><br>
-    <a href="302/200?wait=10000">/302/200?wait=10000</a>
+    <a href="301/302/200?wait=5000">/301/302/200?wait=5000</a><br>
   </p>
 </section>
