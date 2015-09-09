@@ -3,7 +3,10 @@
 <script>
   function update(id) {
     return function() {
-      window[id].innerHTML = 'true';
+      var el = window[id];
+      el.innerHTML = 'true';
+      el.classList.add('in');
+      setTimeout(el.classList.add.bind(el.classList, 'out'));
     };
   }
 
@@ -16,8 +19,8 @@
   <hr>
   <p>
     Have the following events fired?<br>
-    (2s) <code>document.DOMContentLoaded</code>: <i id="domContentLoaded">false</i><br>
-    (6s) <code>window.load</code>: <i id="load">false</i>
+    (2s) <code>document.DOMContentLoaded</code>: <i id="domContentLoaded" class="highlight">false</i><br>
+    (6s) <code>window.load</code>: <i id="load" class="highlight">false</i>
   </p>
   <hr>
   <p><a href=".">Return to instructions</a></p>
