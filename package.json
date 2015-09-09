@@ -23,6 +23,7 @@
   "dependencies": {
     "ejs": "~2.3",
     "ejs-mate": "~2.3",
-    "express": "~4.13"
+    "express": "~4.13",
+    "morgan": "~1.6"
   }
 }

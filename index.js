@@ -1,10 +1,12 @@
 var ejs = require('ejs-mate');
 var express = require('express');
+var morgan = require('morgan');
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.engine('ejs', ejs);
+app.use(morgan('combined'));
 
 ['synthetic'].forEach(function(route) {
   var router = require('./' + route);
