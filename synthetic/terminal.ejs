@@ -1,7 +1,27 @@
 <% layout('../common/layout') %>
 
+<script>
+  function update(id) {
+    return function() {
+      window[id].innerHTML = 'true';
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', update('domContentLoaded'));
+  window.addEventListener('load', update('load'));
+</script>
+
 <section>
   <p>This is a synthetic HTTP <%= status %> response.</p>
   <hr>
+  <p>
+    Have the following events fired?<br>
+    (2s) <code>document.DOMContentLoaded</code>: <i id="domContentLoaded">false</i><br>
+    (6s) <code>window.load</code>: <i id="load">false</i>
+  </p>
+  <hr>
   <p><a href=".">Return to instructions</a></p>
 </section>
+
+<!-- SPLIT -->
+<img class="invisible" src="slow.gif">

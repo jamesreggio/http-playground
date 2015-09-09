@@ -4,6 +4,10 @@ var app = express();
 app.set('etag', false);
 app.set('views', __dirname);
 
+// Loading delays
+var SLOW_GIF_DELAY = 5000;
+var SPLIT_DOCUMENT_DELAY = 1000;
+
 // Categories of HTTP status codes
 var TERMINALS = [200, 204,
                  400, 401, 403, 404,
@@ -19,15 +23,28 @@ var render = {
   },
 
   terminal: function(res, status) {
-    res.status(status).render('terminal', {
+    app.render('terminal', {
       title: 'Synthetic ' + status,
       status: status,
+    }, function(err, html) {
+      var parts = html.split('<!-- SPLIT -->');
+      res.status(status);
+      parts.forEach(function(part, i) {
+        setTimeout(res.write.bind(res, part), i * SPLIT_DOCUMENT_DELAY);
+      });
+      setTimeout(res.end.bind(res), parts.length * SPLIT_DOCUMENT_DELAY);
     });
   },
 };
 
 app.get('/', function(req, res) {
   render.index(res, 200);
+});
+
+app.get('/slow.gif', function(req, res) {
+  setTimeout(function() {
+    res.status(204).send();
+  }, SLOW_GIF_DELAY);
 });
 
 app.get('*', function(req, res) {
