@@ -1,0 +1,126 @@
+<% layout('../common/layout') %>
+
+<script>
+  function xhr(method, url, headers, credentials, fn) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status >= 200 && xhr.status < 300){
+          fn(null, JSON.parse(xhr.response));
+        } else {
+         fn({status: xhr.status}, JSON.parse(xhr.response));
+        }
+      }
+    }
+
+    var open = [method, url, true];
+    if (typeof credentials === 'function') {
+      fn = credentials;
+    } else if (credentials) {
+      open.push(credentials.user);
+      open.push(credentials.password);
+    }
+    xhr.open.apply(xhr, open);
+
+    var header;
+    for (header in headers) {
+      xhr.setRequestHeader(header, headers[header]);
+    }
+
+    xhr.send();
+  }
+
+  function update(id) {
+    return function(error, data) {
+      var el = window[id];
+      if (error) {
+        el.innerHTML = 'error';
+      } else if (data && data['Authorization']) {
+        el.innerHTML = data['Authorization'];
+      } else {
+        el.innerHTML = 'missing';
+      }
+      el.classList.add('in');
+      setTimeout(el.classList.add.bind(el.classList, 'out'));
+    }
+  }
+
+  ['GET', 'POST'].forEach(function(method) {
+    [301, 302, 303, 307].forEach(function(status) {
+      xhr(
+        method,
+        'initial?status=' + status,
+        {'Authorization': 'intact'},
+        update(method + status)
+      );
+    });
+  });
+</script>
+
+<section>
+  <h1>Redirect <code>Authorization</code> headers</h1>
+  <p>
+    For each entry in the table below, this page issues an AJAX request with
+    the specified HTTP verb and a non-null <code>Authorization</code>
+    header.
+  </p>
+  <p>
+    The server will then respond with a redirect with the specified HTTP
+    status, and the destination page (on the same origin) will reflect the
+    value of the <code>Authorization</code> header, which is included then
+    listed in the table.
+  </p>
+  <p>
+    This system exists to detect discrepancies in header handling upon
+    redirects, particularly across different browsers and operating systems.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <td colspan="2">GET</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>301</td>
+        <td><code id="GET301" class="highlight">waiting</code></td>
+      </tr>
+      <tr>
+        <td>302</td>
+        <td><code id="GET302" class="highlight">waiting</code></td>
+      </tr>
+      <tr>
+        <td>303</td>
+        <td><code id="GET303" class="highlight">waiting</code></td>
+      </tr>
+      <tr>
+        <td>307</td>
+        <td><code id="GET307" class="highlight">waiting</code></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <td colspan="2">POST</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>301</td>
+        <td><code id="POST301" class="highlight">waiting</code></td>
+      </tr>
+      <tr>
+        <td>302</td>
+        <td><code id="POST302" class="highlight">waiting</code></td>
+      </tr>
+      <tr>
+        <td>303</td>
+        <td><code id="POST303" class="highlight">waiting</code></td>
+      </tr>
+      <tr>
+        <td>307</td>
+        <td><code id="POST307" class="highlight">waiting</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

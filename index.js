@@ -8,7 +8,10 @@ app.set('view engine', 'ejs');
 app.engine('ejs', ejs);
 app.use(morgan('combined'));
 
-['synthetic'].forEach(function(route) {
+[
+  'authorization',
+  'synthetic',
+].forEach(function(route) {
   var router = require('./' + route);
   router.locals.base = route;
   app.use('/' + route, router);
