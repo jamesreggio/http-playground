@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/jamesreggio/http-playground",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "engines": {
     "node": "0.12"
