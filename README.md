@@ -24,7 +24,7 @@ across different browsers and operating systems.
 
 ## How to run locally
 
-```base
+```sh
 npm install
 npm start
 open http://localhost:3000
