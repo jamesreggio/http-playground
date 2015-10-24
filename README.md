@@ -24,6 +24,8 @@ across different browsers and operating systems.
 
 ## How to run locally
 
+Ensure `./node_modules/.bin` is in your path, then run:
+
 ```sh
 npm install
 npm start
