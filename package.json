@@ -15,7 +15,8 @@
   },
   "homepage": "https://github.com/jamesreggio/http-playground",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "test": "jscs src && jshint src"
   },
   "engines": {
     "node": "0.12"
@@ -25,5 +26,10 @@
     "ejs-mate": "~2.3",
     "express": "~4.13",
     "morgan": "~1.6"
+  },
+  "devDependencies": {
+    "javascript": "jamesreggio/javascript#0.0.2",
+    "jscs": "^2.4.0",
+    "jshint": "^2.8.0"
   }
 }

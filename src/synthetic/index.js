@@ -4,15 +4,19 @@ var app = express();
 app.set('etag', false);
 app.set('views', __dirname);
 
-// Loading delays
+// Loading delays.
 var SLOW_GIF_DELAY = 5000;
 var SPLIT_DOCUMENT_DELAY = 500;
 
-// Categories of HTTP status codes
-var TERMINALS = [200, 204,
-                 400, 401, 403, 404,
-                 500, 501, 502, 503, 504];
-var REDIRECTS = [301, 302, 303, 307, 308];
+// Categories of HTTP status codes.
+var TERMINALS = [
+  200, 204,
+  400, 401, 403, 404,
+  500, 501, 502, 503, 504,
+];
+var REDIRECTS = [
+  301, 302, 303, 307, 308,
+];
 
 var render = {
   index: function(res, status, error) {
@@ -56,7 +60,7 @@ app.get('*', function(req, res) {
   if (TERMINALS.indexOf(next) !== -1) {
     fn = render.terminal.bind(render, res, next);
   } else if (REDIRECTS.indexOf(next) !== -1) {
-    fn = function() {
+    fn = function() { // jscs:ignore requireFunctionDeclarations
       var url = [req.baseUrl].concat(parts).join('/');
       url += isNaN(wait) ? '' : ('?wait=' + wait);
       res.redirect(next, url);

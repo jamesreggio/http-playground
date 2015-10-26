@@ -7,7 +7,7 @@ app.set('views', __dirname);
 var REDIRECTS = [301, 302, 303, 307, 308];
 
 var render = {
-  index: function(res, status, error) {
+  index: function(res, status) {
     res.status(status).render('index', {
       title: 'Redirect Authorization headers',
     });
@@ -28,7 +28,7 @@ app.all('/initial', function(req, res) {
 
 app.get('/redirected', function(req, res) {
   res.send({
-    'Authorization': req.get('Authorization'),
+    Authorization: req.get('Authorization'),
   });
 });
 
