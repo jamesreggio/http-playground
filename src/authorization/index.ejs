@@ -1,4 +1,6 @@
 <% layout('../common/layout') %>
+<% var VERBS = ['GET', 'POST'] %>
+<% var REDIRECTS = [301, 302, 303, 307, 308] %>
 
 <script>
   function xhr(method, url, headers, credentials, fn) {
@@ -46,8 +48,8 @@
     }
   }
 
-  ['GET', 'POST'].forEach(function(method) {
-    [301, 302, 303, 307].forEach(function(status) {
+  <%- JSON.stringify(VERBS) %>.forEach(function(method) {
+    <%- JSON.stringify(REDIRECTS) %>.forEach(function(status) {
       xhr(
         method,
         'initial?status=' + status,
@@ -76,51 +78,22 @@
     redirects, particularly across different browsers and operating systems.
   </p>
   <table>
-    <thead>
-      <tr>
-        <td colspan="2">GET</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>301</td>
-        <td><code id="GET301" class="highlight">waiting</code></td>
-      </tr>
-      <tr>
-        <td>302</td>
-        <td><code id="GET302" class="highlight">waiting</code></td>
-      </tr>
-      <tr>
-        <td>303</td>
-        <td><code id="GET303" class="highlight">waiting</code></td>
-      </tr>
-      <tr>
-        <td>307</td>
-        <td><code id="GET307" class="highlight">waiting</code></td>
-      </tr>
-    </tbody>
-    <thead>
-      <tr>
-        <td colspan="2">POST</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>301</td>
-        <td><code id="POST301" class="highlight">waiting</code></td>
-      </tr>
-      <tr>
-        <td>302</td>
-        <td><code id="POST302" class="highlight">waiting</code></td>
-      </tr>
-      <tr>
-        <td>303</td>
-        <td><code id="POST303" class="highlight">waiting</code></td>
-      </tr>
-      <tr>
-        <td>307</td>
-        <td><code id="POST307" class="highlight">waiting</code></td>
-      </tr>
-    </tbody>
+    <% VERBS.forEach(function(verb) { %>
+      <thead>
+        <tr>
+          <td colspan="2">GET</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% REDIRECTS.forEach(function(status) { %>
+          <tr>
+            <td><%= status %></td>
+            <td>
+              <code id="<%= verb + status %>" class="highlight">waiting</code>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    <% }) %>
   </table>
 </section>
