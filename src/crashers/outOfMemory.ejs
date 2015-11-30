@@ -1,0 +1,13 @@
+<% layout('../common/layout') %>
+
+<script>
+  function outOfMemory() {
+    var arr = [];
+    while (true) {
+      arr.push(42);
+    }
+    return arr;
+  }
+
+  outOfMemory();
+</script>

@@ -10,6 +10,7 @@ app.use(morgan('combined'));
 
 [
   'authorization',
+  'crashers',
   'synthetic',
 ].forEach(function(route) {
   var router = require('./' + route);
