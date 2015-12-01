@@ -22,6 +22,15 @@ same-origin redirect. Server and client then reflect whether the
 Built to test for discrepancies between `Authorization` header preservation
 across different browsers and operating systems.
 
+### [Common crashing bugs](https://http-playground.herokuapp.com/crashers)
+
+Links to a variety of common browser-crashing bugs, particularly those related
+to extreme memory pressure.
+
+Built to test edge-case behavior in mobile browsers and WebView
+implementations, particularly `SFSafariViewController` in iOS 9 with
+[`SFSafariViewControllerPlayground`](https://github.com/jamesreggio/SFSafariViewControllerPlayground).
+
 ## How to run locally
 
 Ensure `./node_modules/.bin` is in your path, then run:
